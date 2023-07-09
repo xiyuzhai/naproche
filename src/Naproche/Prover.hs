@@ -7,6 +7,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE MultiWayIf #-}
+{-# LANGUAGE StrictData #-}
 
 module Naproche.Prover (
   Prover, Status (..), get_name, run, status, run_status,
@@ -49,14 +50,14 @@ data Prover = Prover {
 type Prover_Command = Prover -> Bytes -> IO Bash.Params
 type Prover_Status = Prover -> Process_Result.T -> Status
 
-data Status = Success | Failure | Contradictory_Axioms | Unknown | Error Bytes
+data Status = Success | Failure | Contradictory_Axioms | Unknown | Error !Bytes
   deriving Show
 
 data Messages = Messages {
-  _contradiction :: [Bytes],
-  _success :: [Bytes],
-  _failure :: [Bytes],
-  _unknown :: [Bytes]
+  _contradiction :: ![Bytes],
+  _success :: ![Bytes],
+  _failure :: ![Bytes],
+  _unknown :: ![Bytes]
 }
 
 get_name :: Prover -> Bytes
