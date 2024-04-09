@@ -18,7 +18,7 @@ module SAD.Data.Instr (
   printsimpParam, printthesisParam, unfoldParam, unfoldsfParam, unfoldlowParam, unfoldlowsfParam,
   translationParam, texParam,
   helpParam, serverParam, onlytranslateParam,
-  libraryParam, proverParam, initParam, theoryParam,
+  proverParam, initParam, theoryParam,
   keywordsCommand, keywordsSynonym, keywordsLimit, keywordsFlag, keywordsArgument,
   keywordsDropLimit, keywordsDropFlag
 ) where
@@ -60,7 +60,8 @@ data Drop =
 -- Instructions
 
 data Command =
-    PrintRules
+    ResetPretyping
+  | PrintRules
   | PrintThesis
   | PrintContext
   | PrintContextFiltered
@@ -149,10 +150,9 @@ textFlags@[proveParam, checkParam, checkconsistencyParam, symsignParam, infoPara
     Param.flag "tex" "parse passed file with forthel tex parser" False]
 
 textArgs :: [Param.T Bytes]
-libraryParam, proverParam :: Param.T Bytes
-textArgs@[libraryParam, proverParam] =
-  [Param.bytes "library" "place to look for library texts" "examples",
-   Param.bytes "prover" "use prover NAME" (Prover.get_name Prover.eprover)]
+proverParam :: Param.T Bytes
+textArgs@[proverParam] =
+  [Param.bytes "prover" "use prover NAME" (Prover.get_name Prover.eprover)]
 
 initParam, theoryParam :: Param.T Bytes
 initParam = Param.bytes "init" "init file, empty to skip" "init.opt"
@@ -180,7 +180,8 @@ onlytranslateParam = Param.flag "onlytranslate" "translate input text and exit" 
 
 keywordsCommand :: [(Command, Text)]
 keywordsCommand =
- [(PrintRules, "rules"),
+ [(ResetPretyping, "resetpretyping"),
+  (PrintRules, "rules"),
   (PrintThesis, "thesis"),
   (PrintContext, "context"),
   (PrintContextFiltered, "filter"),

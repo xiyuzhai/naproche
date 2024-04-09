@@ -25,7 +25,6 @@ gather (hout, herr, ph) = do
 files :: [FilePath]
 files = fmap ("examples/"++)
   [ "chinese.ftl"
-  , "fuerstenberg.ftl"
   , "maximum_modulus.ftl"
   , "newman.ftl"
   , "cantor.ftl"
@@ -47,7 +46,6 @@ texFiles = fmap ("examples/"++)
   , "tarski.ftl.tex"
   ] ++ fmap ("text/examples/"++)
   [ "read_test.ftl.tex"
-  , "lambda_term_test.ftl.tex"
   , "text.ftl.tex"
   , "varprime.ftl.tex"
   ]

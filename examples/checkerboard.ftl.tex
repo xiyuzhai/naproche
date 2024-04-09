@@ -55,7 +55,7 @@ Checking takes 2 or 3 minutes on a modest laptop.
         [synonym coordinate/-s]
         [synonym square/-s]
         [synonym subset/-s]
-        
+
         Let $f : X\to Y$ stand for $f : X\rightarrow Y$.
     \end{forthel}
 \end{comment}
@@ -65,13 +65,13 @@ Checking takes 2 or 3 minutes on a modest laptop.
 
 
 \begin{forthel}
-    
+
 \begin{definition}
     Let $B, C$ be sets.
     $B$ is equinumerous with $C$ iff there exists a map $F$ such that
     $F : B\leftrightarrow C$.
 \end{definition}
-    
+
 \begin{lemma}
     Let $B, C$ be sets.
     Assume that $B$ is equinumerous with $C$.
@@ -86,7 +86,7 @@ Checking takes 2 or 3 minutes on a modest laptop.
 \end{lemma}
 \begin{proof}
     Take a map $F$ such that $F : A\leftrightarrow B$.
-    Take a map $G$ such that $G : B\rightarrow A$ 
+    Take a map $G$ such that $G : B\rightarrow A$
     and (for all elements $x$ of $A$ we have $G(F(x)) = x$) and
     (for all elements $y$ of $B$ we have $F(G(y))=y$).
     Take a map $H$ such that $H : B\leftrightarrow C$.
@@ -95,7 +95,7 @@ Checking takes 2 or 3 minutes on a modest laptop.
     For every element $x$ of $A$ $H(F(x))$ is an object.
     Define $J(x) = H(F(x))$ for $x$ in $A$.
     For every element $y$ of $C$ $G(I(y))$ is an object.
-[timelimit 10]
+[timelimit 30]
     $J : A\leftrightarrow C$. Indeed define $K(y) = G(I(y))$ for $y$ in $C$.
 [timelimit 3]
 \end{proof}
@@ -139,9 +139,9 @@ integers $0, 1, 2, \ldots, 7$.
 
     \begin{signature} A square is an object. \end{signature}
     \begin{axiom} $(m, n)$ is a square. \end{axiom}
-    \begin{axiom} 
+    \begin{axiom}
         Let $x$ be a square.
-        Then $x = (m,n)$ for some coordinate $m$ and some coordinate $n$. 
+        Then $x = (m,n)$ for some coordinate $m$ and some coordinate $n$.
     \end{axiom}
     Let $x, y, z$ denote squares.
 \end{forthel}
@@ -155,7 +155,7 @@ The checkerboard is the Dedekind finite set containing all squares.
     \end{definition}
 
     \begin{axiom} The checkerboard is a set. \end{axiom}
-    
+
     Let $\Checkerboard$ stand for the checkerboard.
 
     \begin{axiom}
@@ -190,6 +190,9 @@ we introduce concepts of adjacency by first declaring new relations and then axi
 As usual, chaining of relation symbols indicates a conjunction.
 
 \begin{forthel}
+    Let $m, n, i, j, k, l$ denote coordinates.
+    Let $x, y, z$ denote squares.
+
     \begin{signature}
         Let $m$ be an integer. A neighbour of $m$ is an integer.
     \end{signature}
@@ -222,7 +225,7 @@ As usual, chaining of relation symbols indicates a conjunction.
 
 \begin{forthel}
     \begin{definition}
-        A domino tiling is a disjoint family $T$ 
+        A domino tiling is a disjoint family $T$
         such that every element of $T$ is a domino.
     \end{definition}
 
@@ -253,6 +256,8 @@ inventing new concepts and completely stay within the realm of squares,
 subsets of the checkerboard and dominoes.
 
 \begin{forthel}
+    Let $x, y, z$ denote squares.
+
     \begin{signature} $x$ is black is a relation. \end{signature}
     Let $x$ is white stand for $x$ is not black.
 
@@ -278,6 +283,8 @@ colours of a checkerboard by swapping the files $0$ and $1$, $2$ and $3$, etc..
 We formalize swapping by a first-order function symbol $\Swap{}$.
 
 \begin{forthel}
+    Let $m, n, i, j, k, l$ denote coordinates.
+
     \begin{signature}
         Let $x$ be an element of $\Checkerboard$.
         $\Swap{x}$ is an element of $\Checkerboard$.

@@ -35,7 +35,7 @@ import SAD.Parser.Error
 import SAD.Core.Message qualified as Message
 
 import Isabelle.File qualified as File
-import Isabelle.Library (make_bytes, make_string, make_text, show_bytes)
+import Isabelle.Library (make_bytes, getenv, make_string, make_text, show_bytes)
 import Isabelle.Position as Position
 import Isabelle.Bytes (Bytes)
 import Isabelle.Bytes qualified as Bytes
@@ -63,14 +63,16 @@ initState context tokens = State (initFState context) tokens Ftl Position.none
 -- * Reader loop
 
 -- | Parse one or more ForTheL texts
-readProofText :: Bytes          -- ^ path to library from where other ForTheL
+readProofText :: Bytes          -- ^ name of enviroment variable containing
+                                -- path to formalizations directory
                                 -- texts can be imported via @read(tex)@
                                 -- instructions (e.g. @$NAPROCHE_HOME/examples)
               -> [ProofText]    -- ^ ForTheL texts to be parsed
               -> IO [ProofText]
-readProofText pathToLibrary text0 = do
+readProofText variable text0 = do
   context <- Program.thread_context
-  (text, reports) <- reader pathToLibrary [] [initState context noTokens] text0
+  path <- getenv variable
+  (text, reports) <- reader path [] [initState context noTokens] text0
   when (Program.is_pide context) $ Message.reports reports
   return text
 
